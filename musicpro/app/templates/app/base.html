@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicPro</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+
+
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+
+</head>
+<body>
+
+
+    <header id="header">
+        <img class="menu" src="{% static 'app/img/menuiconwhite.png' %}" alt="menu" id="menu">
+        <div class="contenedor_logo">
+            <img  class="logo"  src="{% static 'app/img/musicpro.png' %}" alt="logo">
+        </div>
+
+        <div>
+
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}"> Inicio </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li><a href="{% url 'galeria' %}">Galería</a></li>
+
+                    <li >
+                        <a style="color:black" href="{% url 'agregar_producto' %}">Agregar Producto</a>
+                    </li>
+                    <li>
+                        <a style="color:black" href="{% url 'listar_productos' %}">Listado Productos</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <div id="contenido">
+
+        {% block contenido %}
+        {% endblock %}
+
+    </div>
+
+
+    <footer>
+        <div class="marcas">
+            <img src="{% static 'app/img/footer/ltdlogo.png' %}" alt="apple">
+            <img src="{% static 'app/img/footer/ibanezlogo.jpg' %}" alt="lenovo">
+            <img src="{% static 'app/img/footer/rolandlogo.png' %}" alt="microsoft">
+            <img src="{% static 'app/img/footer/fenderlogo.png' %}" alt="samsung">
+            <img src="{% static 'app/img/footer/gibsonlogo.png' %}" alt="xiaomi">
+        </div>
+        <div class="logo_footer">
+            <img src="{% static 'app/img/musicpro.png' %}" alt="logo">
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="{% static 'app/js/menu.js' %}"></script>
+
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %} 
+
+{% load static %}
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('.slider').bxSlider({
+          mode: 'fade',//horizontal, vertical, fade
+          auto: true,
+          pause: 2000
+      });
+    });
+</script>
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block contenido %}
+<br>
+<br>
+<div class="slider">
+    <div>
+        <img src="{% static 'app/img/banner/interface.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/bateria.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/guitarra.jpg' %}" alt="">
+    </div>
+</div>
+{{ response }}
+{% load humanize %}
+<div class="productos">
+    {% for p in productos %}
+    <div class="card" style="width: 35%; height: 35%;">
+        {% if p.imagen %}
+        <img src="{{ p.imagen.url }}" class="card-img-top" alt="imagen del producto">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ p.marca | capfirst }}</h5>
+          <h2 class="card-title">{{ p.nombre | title }}</h2> 
+          <h3 class="card-title">${{ p.precio | intcomma }}</h3>
+          
+          <a href="{% url 'webpay' p.id%}" class="btn btn-primary">Comprar</a>
+          <!--<form action="{{ response.url }}" method="POST"></form>
+            <input type="hidden" name="precio" value="{{p.precio}}">
+            <input type="hidden" name="token_ws" value="{{response.token}}">
+            <input type="submit" value="COMPRAR">
+          </form>-->
+          <a href="{% url 'detalle' %}" class="btn btn-primary">Ver detalles</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<br>
+
+{% endblock %}

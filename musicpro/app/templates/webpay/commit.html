@@ -1,0 +1,50 @@
+{% extends 'app/base.html' %}
+
+{% block contenido %}
+    <title>Ejemplo Webpay Plus - Confirmar Transacci&oacute;n</title>
+</head>
+
+<body class="container">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Ejemplo Webpay Plus - Confirmar Transacci&oacute;n</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Step: Commit Transaction</li>
+    </ol>
+</nav>
+
+<!--ESTOS DATOS SON PARA QUE REALICEN UNA BOLETA DE COMPRA-->
+<!--INTENTEN HACER LO MAS LINDA LA BOLETA DE COMPRA Y SI NECESITAN MAS INFO EN LA PAG DE TRANSBANK
+    APARECEN TODAS LAS VARIABLES QUE ACABO DE UTILIZAR POR SI QUIEREN AGREGAR UNA.
+    CUALQUIER CONSULTA QUE TENGAN PREGUNTENME. ISRAEL -->
+    
+<!--MONTO PAGADO-->
+{{response.amount}}
+
+<!--ESTADO DE LA TRANSACCION-->
+{{response.status}}
+
+<!--ORDEN DE COMPRA-->
+{{response.buy_order}}
+
+<!--ULTIMOS 4 DIGITOS DE LA TARJETA-->
+{{response.card_detail.card_number}}
+
+<!--FECHA DE TRANSACCION-->
+{{response.transaction_date}}
+
+<p><samp>Pago ACEPTADO por webpay</samp></p>
+<br>
+<!--IGNOREN ESTO PERO NO LO BORREN
+    <form action="/webpay-plus/refund" method="POST">
+    <input type="hidden" name="token_ws" value="{{ token }}">
+    <input type="hidden" name="amount" value="{{ response.amount }}">
+    <input type="submit" class="btn btn-success" value="Reembolsar Transacci&oacute;n (Anular)">
+</form>
+-->
+<!--VOLVER AL INDEX QUE SEA COMO VOLVER A LA PAGINA PRINCIPAL, AL IGUAL COMO UNO LO HACE CUANDO TERMINA DE COMPRAR
+    EN CUALQUIER TIENDA-->
+<a href="/">&laquo; volver a index</a>
+</body>
+</html>
+
+{% endblock %}

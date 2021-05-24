@@ -1,0 +1,74 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ejemplos Webpay Plus - Crear Transaccion</title>
+</head>
+
+<body class="">
+    
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Estás a un paso de pagar tu compra</h2>
+                     <!--
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Ejemplo Webpay Plus - Crear Transaccion</li>
+                            <li class="breadcrumb-item active" aria-current="page">Step: <strong>Create
+                                    Transaction</strong></li>
+                        </ol>
+                    </nav>
+                -->
+                <!--
+                    </div>
+                <div class="alert alert-primary" role="alert">
+                    <h3>result</h3>
+                    {{ response }}
+                </div>
+                <br>
+                -->
+
+                <br>
+                <form action="{{ response.url }}" method="POST">
+                    <input type="hidden" name="token_ws" value="{{ response.token }}">
+                    <input type="submit" value="Ejecutar Pago con Webpay" class="btn btn-primary">
+                    &nbsp;
+                    <a href="/" class="btn btn-secondary"> volver al menu principal</a>
+                </form>
+                <br>
+
+
+                
+
+                
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
+
+{% endblock %}
