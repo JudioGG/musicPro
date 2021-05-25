@@ -10,14 +10,29 @@ class Marca(models.Model):
     def __str__(self):
         return self.nombre
 
+class Tipo_producto(models.Model):
+    tipo = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tipo
+
+class Categoria(models.Model):
+    
+    categoria_producto = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.categoria_producto
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     precio = models.IntegerField()
     descripcion = models.TextField()
     nuevo = models.BooleanField()
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
+    tipo_prod = models.ForeignKey(Tipo_producto, on_delete=models.PROTECT)
+    categoria_prod = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     fecha_fabricacion = models.DateField()
-    imagen = models.ImageField(upload_to="productos",   null=True)
+    imagen = models.ImageField(upload_to="productos",   null=True) 
     def __str__(self):
         return self.nombre
 
