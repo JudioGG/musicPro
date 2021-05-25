@@ -5,6 +5,8 @@ from transbank.error.transbank_error import TransbankError
 
 import random
 from transbank.webpay.webpay_plus.transaction import Transaction
+from .carro import Carro  #Carrito
+from django.shortcuts import redirect #Carrito
 # Create your views here.
 
 def home(request):
@@ -139,3 +141,41 @@ def webpay_plus_refund(request):
 
 
 
+#----------CARRITO------
+def agregar_car(request, producto_id):
+
+    carro=Carro(request)
+
+    producto=Producto.objects.get(id=producto_id)
+
+    carro.agregar(producto=producto)
+
+    return redirect("home")
+
+def eliminar_car(request, producto_id):
+
+    carro=Carro(request)
+
+    producto=Producto.objects.get(id=producto_id)
+
+    carro.eliminar(producto=producto)
+
+    return redirect("home")
+
+def restar_producto(request, producto_id):
+
+    carro=Carro(request)
+
+    producto=Producto.objects.get(id=producto_id)
+
+    carro.restar_producto(producto=producto)
+
+    return redirect("home")
+
+def limpiar_carro(request, producto_id):
+
+    carro=Carro(request)
+
+    carro.limpiar_carro()
+
+    return redirect("home")

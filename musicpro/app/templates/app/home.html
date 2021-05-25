@@ -36,6 +36,11 @@
 {{ response }}
 {% load humanize %}
 <div class="productos">
+    <div style="float: left;">
+        
+
+        {% include "carro/widget.html" %}
+    </div>
     {% for p in productos %}
     <div class="card" style="width: 35%; height: 35%;">
         {% if p.imagen %}
@@ -45,7 +50,7 @@
           <h5 class="card-title">{{ p.marca | capfirst }}</h5>
           <h2 class="card-title">{{ p.nombre | title }}</h2> 
           <h3 class="card-title">${{ p.precio | intcomma }}</h3>
-          
+          <a href="{% url 'agregar' p.id %}" class="btn btn-success">Añadir al carrito</a>
           <a href="{% url 'webpay' p.id%}" class="btn btn-primary">Comprar</a>
           <!--<form action="{{ response.url }}" method="POST"></form>
             <input type="hidden" name="precio" value="{{p.precio}}">
