@@ -43,7 +43,8 @@
     <tfoot>
         <tr>
             <td colspan="3">
-                Total:${{importe_total_carro}} 
+                Total:${{importe_carro}} 
+                <a href="{% url 'carrito' importe_carro%}" class="btn btn-primary">Comprar</a>
             </td>
         </tr>
     </tfoot>

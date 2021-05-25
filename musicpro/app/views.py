@@ -108,6 +108,25 @@ def webpay_plus(request, id):
 
     return render(request, 'webpay\create.html', data)
 
+def webpay_plus_carrito(request, monto):
+    print("Webpay plus carrito create transaction")
+    #prod = Producto.objects.get(id = id)
+    #precio = request.POST.get("precio")
+    buy_order = str(random.randrange(100000, 999999))
+    session_id = str(random.randrange(100000, 999999))
+    amount = monto #prod.precio
+    return_url = 'http://127.0.0.1:8000/webpaycommit/'
+
+    response = Transaction.create(buy_order,session_id,amount, return_url)
+
+    print(response)
+
+    data = {
+        'response' : response
+    }
+
+    return render(request, 'webpay\create.html', data)
+
 def webpay_plus_commit(request):
     token = request.POST.get("token_ws")
     print("commit for token_ws: {}".format(token))

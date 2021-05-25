@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'app.context_processor.importe_total_carro', #carrito en todas las pag
+                'app.context_processor.importe_carro'
             ],
         },
     },
