@@ -73,6 +73,7 @@ def modificar_producto(request, id):
     }
 
     if request.method == 'POST':
+        
         formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
@@ -134,6 +135,8 @@ def webpay_plus_commit(request):
     response = Transaction.commit(token=token)
     print("response: {}".format(response))
 
+    carro= Carro(request)
+    carro.limpiar_carro()
     data = {
         'token' : token,
         'response' : response

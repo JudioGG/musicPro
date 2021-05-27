@@ -20,7 +20,9 @@
                     <td>{{value.nombre}}</td>
                     <td>{{value.cantidad}}</td>
                     <td>
+                        {% if value.stock > 0 %}
                         <a href="{% url 'agregar' value.producto_id %}" class="btn btn-sm btn-success">+</a>
+                        {% endif %}
                         <a href="{% url 'restar' value.producto_id %}" class="btn btn-sm btn-success">-</a><br>
 
                         ${{value.precio}}

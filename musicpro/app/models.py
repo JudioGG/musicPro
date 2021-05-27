@@ -30,6 +30,7 @@ class Producto(models.Model):
     nuevo = models.BooleanField()
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     tipo_prod = models.ForeignKey(Tipo_producto, on_delete=models.PROTECT)
+    stock = models.IntegerField()
     categoria_prod = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     fecha_fabricacion = models.DateField()
     imagen = models.ImageField(upload_to="productos",   null=True) 

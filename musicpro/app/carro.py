@@ -1,3 +1,5 @@
+from django.db.models import F
+
 class Carro:
     def __init__(self, request):
         self.request=request
@@ -7,14 +9,20 @@ class Carro:
             carro=self.session["carro"]={}
         #else:
         self.carro=carro
+
     def agregar(self, producto):
+        if(producto.stock > 0):
+            producto.stock = producto.stock-1
+            producto.save()
+
         if(str(producto.id) not in self.carro.keys()):
             self.carro[producto.id]={
                 "producto_id":producto.id,
                 "nombre":producto.nombre,
                 "precio":str(producto.precio),
                 "cantidad":1,
-                "imagen":producto.imagen.url
+                "imagen":producto.imagen.url,
+                "stock":producto.stock
             }
         else:
             for key, value in self.carro.items():
@@ -33,6 +41,9 @@ class Carro:
             del self.carro[producto.id]
             self.guardar_carro()
     def restar_producto(self, producto):
+        
+        producto.stock = F('stock') + 1
+        producto.save()
         for key, value in self.carro.items():
             if key==str(producto.id):
                 value["cantidad"]=value["cantidad"]-1

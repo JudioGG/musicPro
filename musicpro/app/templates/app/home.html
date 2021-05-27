@@ -47,11 +47,16 @@
         <img src="{{ p.imagen.url }}" class="card-img-top" alt="imagen del producto">
         {% endif %}
         <div class="card-body">
+        
           <h5 class="card-title">{{ p.marca | capfirst }}</h5>
           <h2 class="card-title">{{ p.nombre | title }}</h2> 
           <h3 class="card-title">${{ p.precio | intcomma }}</h3>
+          <h3 class="card-title">Stock: {{ p.stock | intcomma }}</h3>
+          {% if p.stock > 0 %}
           <a href="{% url 'agregar' p.id %}" class="btn btn-success">Añadir al carrito</a>
+          
           <a href="{% url 'webpay' p.id%}" class="btn btn-primary">Comprar</a>
+          {% endif %}
           <!--<form action="{{ response.url }}" method="POST"></form>
             <input type="hidden" name="precio" value="{{p.precio}}">
             <input type="hidden" name="token_ws" value="{{response.token}}">
@@ -59,6 +64,7 @@
           </form>-->
           <a href="{% url 'detalle' %}" class="btn btn-primary">Ver detalles</a>
         </div>
+        
     </div>
     {% endfor %}
 </div>
