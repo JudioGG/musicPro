@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
 from .models import Producto
 from .forms import ContactoForm, ProductoForm
@@ -10,11 +11,14 @@ from django.shortcuts import redirect #Carrito
 # Create your views here.
 
 def home(request):
+
     productos = Producto.objects.all()
     data = {
         'productos': productos
     }
+    
     return render(request, 'app/home.html', data)
+
 
 def contacto(request):
     data = {

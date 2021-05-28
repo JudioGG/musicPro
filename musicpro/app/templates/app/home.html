@@ -1,17 +1,21 @@
-{% extends 'app/base.html' %} 
+{% extends 'app/base.html' %}
 
 {% load static %}
 
 {% block js %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
-    $(document).ready(function() {
-      $('.slider').bxSlider({
-          mode: 'fade',//horizontal, vertical, fade
-          auto: true,
-          pause: 2000
-      });
+    $(document).ready(function () {
+        $('.slider').bxSlider({
+            mode: 'fade',//horizontal, vertical, fade
+            auto: true,
+            pause: 2000
+        });
     });
 </script>
 {% endblock %}
@@ -33,11 +37,31 @@
         <img src="{% static 'app/img/banner/guitarra.jpg' %}" alt="">
     </div>
 </div>
+
+<!--buscador filtro-->
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Categoria de productos
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">ACCESORIOS VARIOS</a>
+      <a class="dropdown-item" href="#">AMPLIFICADORES</a>
+      <a class="dropdown-item" href="#">PERCUSIÓN</a>
+      <a class="dropdown-item" href="#">INSTRUMENTOS DE CUERDAS</a>
+    </div>
+  </div>
+
+<br>
+<br>
+
+
 {{ response }}
 {% load humanize %}
+
+
 <div class="productos">
     <div style="float: left;">
-        
+
 
         {% include "carro/widget.html" %}
     </div>
@@ -47,24 +71,24 @@
         <img src="{{ p.imagen.url }}" class="card-img-top" alt="imagen del producto">
         {% endif %}
         <div class="card-body">
-        
-          <h5 class="card-title">{{ p.marca | capfirst }}</h5>
-          <h2 class="card-title">{{ p.nombre | title }}</h2> 
-          <h3 class="card-title">${{ p.precio | intcomma }}</h3>
-          <h3 class="card-title">Stock: {{ p.stock | intcomma }}</h3>
-          {% if p.stock > 0 %}
-          <a href="{% url 'agregar' p.id %}" class="btn btn-success">Añadir al carrito</a>
-          
-          <a href="{% url 'webpay' p.id%}" class="btn btn-primary">Comprar</a>
-          {% endif %}
-          <!--<form action="{{ response.url }}" method="POST"></form>
+
+            <h5 class="card-title">{{ p.marca | capfirst }}</h5>
+            <h2 class="card-title">{{ p.nombre | title }}</h2>
+            <h3 class="card-title">${{ p.precio | intcomma }}</h3>
+            <h3 class="card-title">Stock: {{ p.stock | intcomma }}</h3>
+            {% if p.stock > 0 %}
+            <a href="{% url 'agregar' p.id %}" class="btn btn-success">Añadir al carrito</a>
+
+            <a href="{% url 'webpay' p.id%}" class="btn btn-primary">Comprar</a>
+            {% endif %}
+            <!--<form action="{{ response.url }}" method="POST"></form>
             <input type="hidden" name="precio" value="{{p.precio}}">
             <input type="hidden" name="token_ws" value="{{response.token}}">
             <input type="submit" value="COMPRAR">
           </form>-->
-          <a href="{% url 'detalle' %}" class="btn btn-primary">Ver detalles</a>
+            <a href="{% url 'detalle' %}" class="btn btn-primary">Ver detalles</a>
         </div>
-        
+
     </div>
     {% endfor %}
 </div>
