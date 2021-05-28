@@ -1,8 +1,42 @@
+
+
 {% extends 'app/base.html' %}
+
+{% load static %}
 
 {% block contenido %}
 
 <h2>detalle del producto</h2>
+
+ <!----------- IMAGEN DEL PRODUCTO ------------->
+
+ <section class="container mt-5">
+    <h3 class="titulo mb-5">Nombre del producto </h3>
+<div class="row">
+    <div class="col-md-12 col-lg-6"> 
+        <img   id="imagen-producto" src="{% static 'app/img/banner/guitarra.jpg' %}" alt="Producto">
+    </div>
+    <div id="detalle-producto" class="col-md-12 col-lg-6 mt-5">
+        <h5>Precio: <span style="color: green; font-weight:bold;">$30.000</span></h5>
+        <h5>Codigo: aaa123</h5>
+        <br>
+        <a href="" class="btn btn-success">Añadir al carrito</a>
+        <br>
+        <br>
+        <a href="" class="btn btn-primary">Comprar</a>
+    </div>
+</div>
+
+
+<div class=" mt-5">
+    <h3 class="titulo">Descrpción del producto</h3>
+    <div class=" descripcion mb-5">
+        <h5>Nombre del Producto</h5> 
+        <p> ipsum dolor sit amet consectetur adipisicing elit. Tempora eaque culpa repellat amet tenetur, unde quia officia, quo maiores reiciendis omnis molestias praesentium, voluptatibus quaerat optio rem inventore corrupti ullam consequuntur ducimus fugit odio ad. Dolor ab molestias quia ex blanditiis harum maiores odit id natus! Nulla ducimus cupiditate accusamus.</p>
+    </div>
+    
+</div>
+</section>
 
 
 {% endblock %}
